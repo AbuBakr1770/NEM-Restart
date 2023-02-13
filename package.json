@@ -1,0 +1,16 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "Node,Express,mongodb Project",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "Abu Bakar",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0"
+  }
+}
