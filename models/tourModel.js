@@ -38,7 +38,7 @@ const TourSchema = new mongoose.Schema({
   },
   description:{
     type:String,
-    trim:true // trim reamver all the extra white spaces in a string
+    trim:true // trim removes all the extra white spaces in a string
   },
   imageCover:{
     type:String,
