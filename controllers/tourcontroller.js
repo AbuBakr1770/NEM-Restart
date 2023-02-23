@@ -11,16 +11,30 @@ exports.checkBody = (req, res, next) => {
 };
 exports.getAllTours = async (req, res) => {
   try {
-    const allTours = await tourModel.find();
+      // building a query
+      //1) Filtering
+    const queryObj = {...req.query}
+    const excludedFields = ['sort','page','limit','field']
+    excludedFields.forEach(ele =>{delete queryObj[ele]})
+
+    //2)Advance Filtering
+    let queryStr = JSON.stringify(queryObj)
+    queryStr = queryStr.replace(/\b(gte|gt|lt|lte)\b/g, match => `$${match}`)
+
+    console.log(JSON.parse(queryStr));
+
+
+    const query = await tourModel.find(JSON.parse(queryStr));
 
     res.status(200).json({
       status: 'successful!!',
+      results:query.length,
       data: {
-        tours: allTours,
+        tours: query,
       },
     });
   } catch (err) {
-    res.ststus(400).json({
+    res.status(400).json({
       status: 'Fail/Invalid Request',
       message: err,
     });
